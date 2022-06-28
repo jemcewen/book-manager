@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "title": "The Alchemist",
+        "read": false
+    },
+    {
+        "id": 2,
+        "title": "Drive",
+        "read": true
+    }
+]
