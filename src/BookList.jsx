@@ -1,6 +1,10 @@
 import Book from "./Book";
+import { useStore } from "./store";
 
-export default function BookList({ bookList, filter, setFilter, handleToggle }) {
+export default function BookList() {
+
+  const bookList = useStore((state) => state.bookList);
+  const filter = useStore((state) => state.filter);
 
   const getFilteredBookList = (bookList, filter) => {
     return bookList.filter((book) => {
@@ -20,14 +24,12 @@ export default function BookList({ bookList, filter, setFilter, handleToggle }) 
         {
           getFilteredBookList(bookList, filter).map((book) => {
             return (
-              <Book book={book} setFilter={setFilter} handleToggle={handleToggle} />
+              <Book book={book} key={book.id}/>
             );
           })
         }
       </ul>
-      <button onClick={() => setFilter("All")}>All</button>
-      <button onClick={() => setFilter("Read")}>Read</button>
-      <button onClick={() => setFilter("Reading")}>Reading</button>
+      
     </div>
   );
 }

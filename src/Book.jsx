@@ -1,21 +1,26 @@
+import BookControls from "./BookControls";
+import { useStore } from "./store"
 
+export default function Book({ book }) {
 
-export default function Book({ book, handleToggle }) {
+  const toggleRead = useStore((state) => state.toggleRead);
+  const {id, title, read} = book;
 
   const handleClick = (e) => {
     e.preventDefault();
-    handleToggle(e.currentTarget.id);
+    toggleRead(id);
   };
 
   return (
-    <li
-      id={book.id}
-      key={book.id + book.title}
-      value={book.id}
-      onClick={handleClick}
-      className={book.read ? "book strike" : "book"}
-    >
-      {book.title}
-    </li>
+    <>
+      <li
+        id={id}
+        onClick={handleClick}
+        className={read ? "book strike" : "book"}
+      >
+        {title}
+      </li>
+      <BookControls book={book} />
+    </>
   );
 }
